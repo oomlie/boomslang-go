@@ -1,5 +1,5 @@
-module boomslang-go/main
+module github.com/arbaregni/boomslang-go
 
-go 1.24.1
+go 1.18
 
-require github.com/davecgh/go-spew v1.1.1 // indirect
+require github.com/davecgh/go-spew v1.1.1
