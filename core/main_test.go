@@ -11,7 +11,7 @@ type testcase struct {
 	expected string
 }
 
-const TESTCASES_DIR string = "testcases"
+const TESTCASES_DIR string = "../testcases"
 
 func readFile(filePath string) string {
 	buf, err := os.ReadFile(filePath)
@@ -38,7 +38,7 @@ func TestExamples(t *testing.T) {
 			opts.ostr = buf
 			opts.estr = buf
 
-			rc := execute(opts, TESTCASES_DIR+"/"+file.Name())
+			rc := RunFile(opts, TESTCASES_DIR+"/"+file.Name())
 
 			if rc > 0 {
 				t.Errorf("program '%s' executed with nonzero exit ckde: %d", file.Name(), rc)

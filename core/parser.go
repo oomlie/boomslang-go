@@ -93,6 +93,10 @@ var infixBuiltins []builtindef = []builtindef{
 	{"_super-duper-secret__minus", "minus"},
 }
 
+func (p *Parser) ParseStmnt(words []Token) (Ast, error) {
+	ast, err := p.parseStmnt(words);
+	return ast, err
+}
 func (p *Parser) parseStmnt(words []Token) (Ast, error) {
 	if p.debug {
 		log.Printf("parseStmnt %#v\n", words)

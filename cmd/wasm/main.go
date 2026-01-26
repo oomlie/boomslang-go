@@ -19,7 +19,12 @@ func (s StringSource) ReadLine() (string, error) {
 	return s.buf.ReadString('\n')
 }
 func MakeStringSource(name string, programText string) StringSource {
-    reader := strings.NewReader(programText);
+    builder := strings.Builder{}
+    builder.WriteString(programText)
+    if (!strings.HasSuffix(programText, "\n")) {
+        builder.WriteString("\n");
+    }
+    reader := strings.NewReader(builder.String());
     buf := bufio.NewReader(reader);
     return StringSource { name, buf };
 }
@@ -47,13 +52,19 @@ func executeJSBoomslangSource(this js.Value, p []js.Value) interface{} {
 
     // evaluate the program
 	rc, val := core.Run(opts, source, env)
+    prettyPrintVal := "";
+    shouldUnwindVal := false;
+    if val != nil {
+        prettyPrintVal = val.PrettyPrint();
+        shouldUnwindVal = val.ShouldUnwind();
+    }
 
     result := map[string]interface{} {
         "programStdout": programStdout.String(),
         "programStderr": programStderr.String(),
         "programReturncode": rc,
-        "programReturnvalue": val.PrettyPrint(),
-        "programShouldUnwind": val.ShouldUnwind(),
+        "programReturnvalue": prettyPrintVal,
+        "programShouldUnwind": shouldUnwindVal,
     };
 
 	return js.ValueOf(result)
