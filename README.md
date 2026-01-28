@@ -13,7 +13,7 @@ For example, in your typical "Hello world" program, newcomers must learn many ne
 ```python
 print("Hello world")
 ```
-You need to learn some weird outdated vocabulary ("print"? I don not even own a printer!), and are burdened with such syntactical machinery as parenthesis and string quoting. 
+You need to learn some weird outdated vocabulary ("print"? I do not even own a printer!), and are burdened with such syntactical machinery as parenthesis and string quoting. 
 Boomslang makes this much easier, by letting you just say what you want to happen:
 ```
 show text Hello world!
